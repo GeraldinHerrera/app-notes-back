@@ -9,9 +9,13 @@ export class NoteController {
 
   createNote = async (req, res) => {
     try {
-      const { estudiante_id, nota1, nota2, nota3, nota4 } = req.body;
+      const { estudiante_id, nota1, nota2, nota3, nota4, materia } = req.body;
       if (!estudiante_id) {
         res.status(400).json({ error: 'El estudiante_id es obligatorio' });
+        return;
+      }
+      if (!materia) {
+        res.status(400).json({ error: 'La materia es obligatoria' });
         return;
       }
       
@@ -20,7 +24,8 @@ export class NoteController {
         nota1,
         nota2,
         nota3,
-        nota4
+        nota4,
+        materia
       });
       res.status(201).json(newNote);
     } catch (error) {
@@ -34,12 +39,12 @@ export class NoteController {
       const cedula = req.query.cedula;
       const nombre = req.query.nombre;
 
-      if (!cedula || !nombre) {
-        res.status(400).json({ error: 'Cédula y nombre son requeridos' });
+      if (!cedula && !nombre) {
+        res.status(400).json({ error: 'Cédula o nombre son requeridos' });
         return;
       }
 
-      const estudiante_id = await this.studentService.getStudentIdByCedulaAndNombre(cedula, nombre);
+      const estudiante_id = await this.studentService.getStudentIdByCedulaOrNombre(cedula, nombre);
       if (!estudiante_id) {
         res.status(404).json({ error: 'Estudiante no encontrado' });
         return;

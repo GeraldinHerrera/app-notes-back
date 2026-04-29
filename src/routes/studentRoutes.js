@@ -15,7 +15,6 @@ const studentController = new StudentController();
  *         - nombre
  *         - correo
  *         - celular
- *         - materia
  *       properties:
  *         id:
  *           type: integer
@@ -32,15 +31,11 @@ const studentController = new StudentController();
  *         celular:
  *           type: string
  *           description: Número de celular
- *         materia:
- *           type: string
- *           description: Materia
  *       example:
  *         cedula: "123456789"
  *         nombre: "Juan Perez"
  *         correo: "juan@example.com"
  *         celular: "3001234567"
- *         materia: "Matemáticas"
  */
 
 /**
@@ -74,19 +69,19 @@ router.post('/students', studentController.createStudent);
  *         name: cedula
  *         schema:
  *           type: string
- *         required: true
+ *         required: false
  *         description: Cédula del estudiante
  *       - in: query
  *         name: nombre
  *         schema:
  *           type: string
- *         required: true
+ *         required: false
  *         description: Nombre del estudiante
  *     responses:
  *       200:
  *         description: ID del estudiante
  *       400:
- *         description: Cédula y nombre son requeridos
+ *         description: Cédula o nombre son requeridos
  *       404:
  *         description: Estudiante no encontrado
  */

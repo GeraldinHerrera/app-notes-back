@@ -9,8 +9,8 @@ export class StudentService {
     return await this.studentRepository.createStudent(student);
   }
 
-  async getStudentIdByCedulaAndNombre(cedula, nombre) {
-    const student = await this.studentRepository.findByCedulaAndNombre(cedula, nombre);
+  async getStudentIdByCedulaOrNombre(cedula, nombre) {
+    const student = await this.studentRepository.findByCedulaOrNombre(cedula, nombre);
     return student?.id || null;
   }
 }

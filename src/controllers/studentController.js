@@ -20,12 +20,12 @@ export class StudentController {
       const cedula = req.query.cedula;
       const nombre = req.query.nombre;
 
-      if (!cedula || !nombre) {
-        res.status(400).json({ error: 'Cédula y nombre son requeridos' });
+      if (!cedula && !nombre) {
+        res.status(400).json({ error: 'Cédula o nombre son requeridos' });
         return;
       }
 
-      const id = await this.studentService.getStudentIdByCedulaAndNombre(cedula, nombre);
+      const id = await this.studentService.getStudentIdByCedulaOrNombre(cedula, nombre);
       if (id) {
         res.status(200).json({ estudiante_id: id });
       } else {

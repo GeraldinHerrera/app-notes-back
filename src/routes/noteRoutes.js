@@ -12,6 +12,7 @@ const noteController = new NoteController();
  *       type: object
  *       required:
  *         - estudiante_id
+ *         - materia
  *       properties:
  *         id:
  *           type: integer
@@ -27,12 +28,15 @@ const noteController = new NoteController();
  *           type: number
  *         definitiva:
  *           type: number
+ *         materia:
+ *           type: string
  *       example:
  *         estudiante_id: 1
  *         nota1: 4.5
  *         nota2: 3.8
  *         nota3: 4.0
  *         nota4: 4.2
+ *         materia: "Matemáticas"
  */
 
 /**
@@ -68,17 +72,17 @@ router.post('/notes', noteController.createNote);
  *         name: cedula
  *         schema:
  *           type: string
- *         required: true
+ *         required: false
  *       - in: query
  *         name: nombre
  *         schema:
  *           type: string
- *         required: true
+ *         required: false
  *     responses:
  *       200:
  *         description: Lista de notas del estudiante
  *       400:
- *         description: Cédula y nombre son requeridos
+ *         description: Cédula o nombre son requeridos
  *       404:
  *         description: Estudiante no encontrado
  */
